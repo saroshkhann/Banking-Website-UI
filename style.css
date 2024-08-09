@@ -1,0 +1,258 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #f3f3f3;
+  font-family: 'Poppins', sans-serif;
+}
+
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+  margin-top: 2rem;
+}
+
+.header-para {
+  font-size: 1.9rem;
+  font-weight: 500;
+}
+
+.header-img {
+  height: 5.3rem;
+}
+
+.header-inputs {
+  display: flex;
+  gap: 1.4rem;
+}
+.input {
+  background: #fff;
+  border: none;
+  width: 11.5rem;
+  height: 3.7rem;
+  border-radius: 25px;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 500;
+  border: 1px solid #fff;
+  transition: all 0.3s;
+}
+.input::placeholder {
+  color: #bbb;
+  /* text-transform: uppercase; */
+}
+
+.input:focus {
+  outline: none;
+  border: 0.1px solid #bbb;
+}
+
+.header-btn {
+  border: none;
+  font-size: 2.2rem;
+  background: none;
+  cursor: pointer;
+}
+
+.containerr {
+  margin-right: 15rem;
+  margin-left: 15rem;
+  margin-top: 7rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 4fr 3fr;
+  grid-template-rows: auto repeat(3, 15rem) auto;
+  gap: 2rem;
+}
+
+.balance {
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1 / span 2;
+  align-items: center;
+}
+
+.balance__label {
+  font-size: 2.2rem;
+  font-weight: 400;
+}
+
+.balance__date {
+  font-size: 1.2rem;
+  color: #bbb;
+}
+
+.balance__value {
+  font-size: 5rem;
+}
+
+.movements {
+  background-color: #fff;
+  grid-row: 2 / 5;
+  border-radius: 10px;
+  overflow: scroll;
+}
+
+.movement__row {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 2.4rem 4rem;
+  border-bottom: 0.1px solid #bbbbbb4d;
+  color: #666;
+}
+
+.movement__type {
+  color: #fff;
+  width: 7rem;
+  text-align: center;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: 1.5rem;
+}
+
+.movement__type--deposit {
+  background-image: linear-gradient(to top left, #39b385, #9be15d);
+}
+
+.movement__type--withdrawal {
+  background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+}
+
+.movement__balance {
+  margin-left: auto;
+  font-size: 2rem;
+}
+
+.movement__date {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.summary {
+  grid-row: 5 /6;
+  display: flex;
+  align-items: baseline;
+}
+
+.summary__label {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+.summary__value {
+  font-size: 2.4rem;
+  margin-right: 2rem;
+}
+
+.summary__label {
+  margin-right: 0.6rem;
+  font-weight: 400;
+}
+
+.summary__value--deposit,
+.summary__value--interest {
+  color: #39b385;
+}
+
+.summary__value--withdrawal {
+  color: #e52a5a;
+}
+
+.summary_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.summary_btn:hover {
+  color: #666;
+}
+
+.operation {
+  padding: 3.2rem;
+  border-radius: 1rem;
+  color: #333;
+}
+.operation--transfer {
+  background-image: linear-gradient(to top left, #ffb003, #ffcb03);
+}
+
+.operation--loan {
+  background-image: linear-gradient(to top left, #39b385, #9be15d);
+}
+
+.operation--close {
+  background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+}
+
+.transfer__label {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.form__input {
+  background: none;
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  width: 12rem;
+  height: 3rem;
+  margin-right: 1rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.form__input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.transfer__btn {
+  background: #fff;
+  border: none;
+  width: 5rem;
+  height: 3rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.form-label {
+  margin-left: 2.5rem;
+  font-size: 1.3rem;
+}
+
+.fl {
+  margin-left: 6.6rem;
+}
+
+.ml {
+  margin-left: 3.5rem;
+}
+
+.tl {
+  margin-left: 4.5rem;
+}
+
+.logout-timer {
+  text-align: right;
+  margin-top: 1.9rem;
+  font-size: 1.25rem;
+}
+.timer {
+  font-weight: 600;
+}
