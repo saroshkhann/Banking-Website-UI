@@ -10,6 +10,7 @@ const labelIncome = document.querySelector('.summary__value--in');
 const labelOut = document.querySelector('.summary__value--out');
 const labelInterest = document.querySelector('.summary__value--interest');
 const labelDate = document.querySelector('.date');
+const labelTimer = document.querySelector('.timer');
 
 const containerMovements = document.querySelector('.movements');
 const containerApp = document.querySelector('.app');
@@ -112,6 +113,32 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogoutTimer = function () {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+
+    labelTimer.textContent = `${min}:${sec}`;
+
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+
+      containerApp.style.opacity = 0;
+    }
+
+    time--;
+  };
+
+  let time = 120;
+
+  tick();
+
+  const timer = setInterval(tick, 1000);
+
+  return timer;
+};
+
 const calcDisplaySummary = function (acc) {
   const income = acc.movements
     .filter(mov => mov > 0)
@@ -143,7 +170,7 @@ const checkUserName = function (accs) {
 
 checkUserName(accounts);
 
-let currentAccount;
+let currentAccount, timer;
 
 // const now = new Date();
 // const day = now.getDate();
@@ -160,7 +187,7 @@ btnLogin.addEventListener('click', function (e) {
 
   currentAccount = accounts.find(acc => acc.username === loginInput.value);
 
-  if (currentAccount?.pin === Number(loginPin.value)) {
+  if (currentAccount?.pin === +loginPin.value) {
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
     }`;
@@ -179,6 +206,11 @@ btnLogin.addEventListener('click', function (e) {
       currentAccount.locale,
       options
     ).format(date);
+
+    if (timer) clearInterval(timer);
+
+    timer = startLogoutTimer();
+
     updateUI(currentAccount);
   }
   loginInput.value = loginPin.value = '';
@@ -207,7 +239,11 @@ btnTransfer.addEventListener('click', function (e) {
     receiverAcc.movements.push(amount);
     currentAccount.movementsDates.push(new Date().toISOString());
     receiverAcc.movementsDates.push(new Date().toISOString());
+
     updateUI(currentAccount);
+
+    clearInterval(timer);
+    timer = startLogoutTimer();
   }
 });
 
@@ -215,9 +251,14 @@ btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
   const amount = Number(inputLoanAmount.value);
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    currentAccount.movements.push(amount);
-    currentAccount.movementsDates.push(new Date().toISOString());
-    updateUI(currentAccount);
+    setTimeout(function () {
+      currentAccount.movements.push(amount);
+      currentAccount.movementsDates.push(new Date().toISOString());
+      updateUI(currentAccount);
+
+      clearInterval(timer);
+      timer = startLogoutTimer();
+    }, 2500);
   }
 });
 
